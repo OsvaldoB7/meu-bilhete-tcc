@@ -1,0 +1,11 @@
+<h1>Eventos Disponíveis</h1>
+
+<% @events.each do |event| %>
+  <div class="event">
+    <h2><%= event.name %></h2>
+    <p><%= event.description %></p>
+    <p>Data: <%= event.date.strftime('%d/%m/%Y %H:%M') %></p>
+    <p>Preço: <%= number_to_currency(event.price) %></p>
+    <%= link_to "Ver Detalhes", event_path(event), class: "details-button" %>
+  </div>
+<% end %>

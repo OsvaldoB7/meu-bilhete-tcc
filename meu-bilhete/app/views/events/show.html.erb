@@ -1,0 +1,18 @@
+<h1><%= @event.name %></h1>
+<p><%= @event.description %></p>
+<p>Data: <%= @event.date.strftime('%d/%m/%Y %H:%M') %></p>
+<p>Preço: <%= number_to_currency(@event.price) %></p>
+
+<h2>Comprar Bilhetes</h2>
+<%= form_with url: checkout_path, method: :get, local: true do %>
+  <div>
+    <label for="ticket_quantity">Quantidade:</label>
+    <select name="ticket_quantity" id="ticket_quantity">
+      <% (1..10).each do |number| %>
+        <option value="<%= number %>"><%= number %></option>
+      <% end %>
+    </select>
+  </div>
+  <%= hidden_field_tag :event_id, @event.id %>
+  <%= submit_tag "Comprar" %>
+<% end %>
