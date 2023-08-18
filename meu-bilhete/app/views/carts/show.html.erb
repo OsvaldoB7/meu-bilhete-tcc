@@ -1,0 +1,22 @@
+<h2>Seu Carrinho de Compras</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Evento</th>
+      <th>Quantidade</th>
+      <th>Preço Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @cart_items.each do |cart_item| %>
+      <tr>
+        <td><%= cart_item.event.name %></td>
+        <td><%= cart_item.quantity %></td>
+        <td><%= number_to_currency(cart_item.event.price * cart_item.quantity) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to "Finalizar Compra", checkout_path %>
